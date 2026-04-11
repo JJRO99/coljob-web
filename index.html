@@ -3,217 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColJob | Estamos Preparando Algo Lindo</title>
+    <title>ColJob | El futuro del trabajo se está compilando</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* --- ESTILOS GENERALES Y COLORES SUAVES --- */
+        /* --- VARIABLES DE COLORES --- */
         :root {
-            --naranja: #FF6600;
-            --naranja-palido: #FFD6BC; /* Para la estela del cursor */
-            --negro: #111111; /* Negro suave, no puro */
-            --blanco-hueso: #FEFDF5; /* Fondo ultra-suave y acogedor */
-            --gris-suave: #E0E0E0;
+            --negro: #000000;
+            --negro-suave: #0a0a0a; /* Para degradados muy sutiles */
+            --blanco: #ffffff;
+            --naranja: #ff6a00; /* Naranja tecnológico vibrante */
+            --naranja-transparente: rgba(255, 106, 0, 0.1);
+            --naranja-brillo: rgba(255, 106, 0, 0.8);
+            
+            --fuente-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        * { box-sizing: border-box; }
+        /* --- ESTILOS BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: var(--blanco-hueso);
-            color: var(--negro);
-            font-family: 'Poppins', 'Helvetica Neue', sans-serif; /* Tipografía amable y moderna */
-            overflow: hidden; /* Importante para el confeti */
-            display: flex; justify-content: center; align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Evita barras de desplazamiento para el fondo animado */
+            background-color: var(--negro);
+            color: var(--blanco);
+            font-family: var(--fuente-principal);
+            -webkit-font-smoothing: antialiased; /* Suavizado de fuente premium */
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* --- FONDO DE MINIATURAS (SVG) --- */
-        /* Usamos un patrón SVG ligero para las caricaturas vistas desde el techo */
-        .background-pattern {
+        /* --- FONDO ANIMADO DE PARTÍCULAS (RED DE NODOS) --- */
+        #particles-js {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FF6600' fill-opacity='0.08'%3E%3Ccircle cx='15' cy='15' r='5'/%3E%3Crect x='10' y='25' width='10' height='2' rx='1'/%3E%3Ccircle cx='50' cy='50' r='5'/%3E%3Crect x='45' y='60' width='10' height='2' rx='1'/%3E%3Ccircle cx='85' cy='85' r='5'/%3E%3Crect x='80' y='95' width='10' height='2' rx='1'/%3E%3Ccircle cx='85' cy='15' r='5'/%3E%3Crect x='80' y='25' width='10' height='2' rx='1'/%3E%3Ccircle cx='15' cy='85' r='5'/%3E%3Crect x='10' y='95' width='10' height='2' rx='1'/%3E%3C/g%3E%3C/svg%3E");
-            background-size: 150px 150px;
-            z-index: 1;
-            opacity: 0.6;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Detrás del contenido */
+            background-image: radial-gradient(circle at center, var(--negro-suave) 0%, var(--negro) 100%);
         }
 
-        /* --- CONTENEDOR PRINCIPAL 'COZY' --- */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .main-container {
             text-align: center;
-            z-index: 10;
+            z-index: 10; /* Delante del fondo */
             padding: 40px;
-            background: rgba(254, 253, 245, 0.9); /* Casi opaco para legibilidad */
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Sombra muy sutil */
             max-width: 90%;
-            width: 480px;
+            width: 600px; /* Ancho optimizado para lectura */
             opacity: 0;
-            animation: fadeInSlight 1s ease-out forwards;
+            animation: fadeInSlight 1.5s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- ESTILOS DEL LOGO --- */
-        .logo-container {
-            margin-bottom: 35px;
+        /* --- LOGO O SÍMBOLO --- */
+        .brand-symbol {
+            font-size: 3rem;
+            color: var(--naranja);
+            margin-bottom: 40px;
+            animation: symbolPulse 4s infinite;
         }
 
-        .logo-final {
-            max-width: 160px;
-            height: auto;
-            filter: drop-shadow(0 2px 5px rgba(255, 102, 0, 0.1));
-            transition: transform 0.3s ease-out;
-        }
-
-        /* Micro-interacción: El logo se balancea suavemente al hover */
-        .logo-container:hover .logo-final {
-            transform: rotate(3deg) scale(1.02);
-        }
-
-        /* --- TIPOGRAFÍA Y TEXTOS AMABLES --- */
+        /* --- TEXTOS Y JERARQUÍA VISUAL --- */
         h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 25px;
+            color: var(--blanco);
+            letter-spacing: -0.5px;
+        }
+
+        /* Estilo para el emoji/símbolo en el texto */
+        h1 span.compile-icon {
+            color: var(--naranja);
+            margin-right: 8px;
+            display: inline-block;
+            animation: rotateSymbol 2s infinite linear;
+        }
+
+        p {
             font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7); /* Blanco suavizado para el subtítulo */
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        /* --- BOTÓN 'INICIALIZAR' --- */
+        .btn-initialize {
+            background-color: transparent;
+            color: var(--naranja);
+            border: 1px solid rgba(255, 106, 0, 0.4);
+            padding: 16px 45px;
+            font-size: 1rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0 0 15px 0;
-            color: rgba(17, 17, 17, 0.6);
-        }
-
-        h1 span {
-            color: var(--naranja);
-            font-weight: 700;
-        }
-
-        .status-msg {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--negro);
-            margin: 0 0 45px 0;
-            line-height: 1.2;
-        }
-
-        /* --- BOTÓN 'SOFT' --- */
-        .btn-notify {
-            background-color: var(--naranja);
-            color: var(--blanco-hueso);
-            border: none;
-            padding: 16px 45px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px; /* Bordes muy redondeados */
+            letter-spacing: 2px;
+            border-radius: 4px; /* Bordes rectos y minimalistas */
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.2);
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición suave premium */
+            box-shadow: 0 0 10px rgba(255, 106, 0, 0.0);
         }
 
-        .btn-notify:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
-            background-color: #FF751A; /* Un naranja un poco más claro */
+        .btn-initialize:hover {
+            background-color: var(--naranja);
+            color: var(--negro);
+            border-color: var(--naranja);
+            box-shadow: 0 0 25px var(--naranja-transparente);
+            transform: translateY(-2px);
         }
 
-        /* Micro-interacción: Un brillo suave que recorre el botón */
-        .btn-notify::before {
+        /* Microinteracción: Un ligero brillo que recorre el botón */
+        .btn-initialize::after {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%);
             transform: skewX(-25deg);
             transition: 0.7s;
         }
 
-        .btn-notify:hover::before {
+        .btn-initialize:hover::after {
             left: 150%;
         }
 
-        /* --- ESTELA DEL CURSOR (CONFITE) --- */
-        .confetti {
+        /* --- EFECTO DE ONDA EXPANSIVA (RIPPLE) AL CLIC --- */
+        .click-ripple {
             position: fixed;
-            width: 10px; height: 10px;
-            background-color: var(--naranja);
             border-radius: 50%;
+            background-color: var(--naranja);
             pointer-events: none;
-            z-index: 5;
-            opacity: 0;
             transform: scale(0);
-            animation: confettiFall 1s ease-out forwards;
+            z-index: 9999;
+            opacity: 0.6;
+            filter: blur(2px);
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         /* --- ANIMACIONES CSS --- */
         @keyframes fadeInSlight {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes confettiFall {
-            0% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
-            100% { opacity: 0; transform: scale(0.5) translateY(50px) rotate(360deg); }
+        @keyframes symbolPulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.8; transform: scale(1); }
         }
 
-        /* Responsividad */
+        @keyframes rotateSymbol {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- ADAPTACIÓN PARA MÓVILES (RESPONSIVE) --- */
         @media (max-width: 600px) {
-            .status-msg { font-size: 1.8rem; }
-            h1 { font-size: 0.9rem; letter-spacing: 2px; }
-            .logo-final { max-width: 130px; }
-            .main-container { padding: 30px; }
+            h1 { font-size: 1.8rem; margin-bottom: 20px; }
+            p { font-size: 1rem; margin-bottom: 45px; }
+            .btn-initialize { padding: 14px 35px; font-size: 0.9rem; }
+            .brand-symbol { font-size: 2.5rem; margin-bottom: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-pattern"></div>
+    <div id="particles-js"></div>
 
     <div class="main-container">
         
-        <div class="logo-container">
-            <img src="logo_ColJob.png" alt="Logo ColJob" class="logo-final">
-        </div>
+        <div class="brand-symbol">⚛</div>
 
-        <h1>Estamos preparando <span>ColJob</span></h1>
+        <h1><span class="compile-icon">🟠</span>El futuro del trabajo se está compilando.</h1>
         
-        <p class="status-msg">El espacio para<br>tu talento.</p>
+        <p>Pronto liberamos la primera versión.</p>
 
         <button class="btn-notify" id="notify-btn">
-            Avísame
+            Inicializar
         </button>
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // 1. Efecto de Estela de Confeti (Cursor Trail)
-        document.addEventListener('mousemove', (e) => {
-            // Solo crear confeti si el mouse se mueve rápido para no saturar
-            if (Math.random() > 0.85) { 
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                
-                // Color aleatorio (naranja o blanco)
-                const colors = ['#FF6600', '#FFD6BC', '#FFFFFF'];
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Posición inicial en el cursor
-                confetti.style.left = (e.clientX - 5) + 'px';
-                confetti.style.top = (e.clientY - 5) + 'px';
-                
-                // Tamaño aleatorio sutil
-                const size = Math.random() * 8 + 4;
-                confetti.style.width = confetti.style.height = size + 'px';
-
-                document.body.appendChild(confetti);
-                
-                // Borrar después de la animación
-                setTimeout(() => {
-                    confetti.remove();
-                }, 1000);
-            }
+        // Configuración de particles.js para el efecto "Red de Nodos"
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80, // Número de nodos (ajusta para densidad)
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" }, // Color de los nodos
+                "shape": {
+                    "type": "circle", // Nodos circulares
+                    "stroke": { "width": 0, "color": "#000000" },
+                },
+                "opacity": {
+                    "value": 0.2, // Nodos muy sutiles
+                    "random": false,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 2, // Tamaño de los nodos
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true, // Activar las líneas conectoras
+                    "distance": 150, // Distancia máxima de conexión
+                    "color": "#ffffff", // Color de las líneas
+                    "opacity": 0.1, // Líneas ultra-sutiles
+                    "width": 1
+                },
+                "move": {
+                    "enable": true, // Movimiento fluido
+                    "speed": 1, // Velocidad lenta y elegante
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out", // Partículas que salen vuelven a entrar
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab" // Las líneas se conectan sutilmente al cursor
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push" // Clic añade partículas (para feedback visual)
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 0.3 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
         });
 
-        // 2. Efecto de Clic Lúdico (Alerta)
+        // --- EFECTO DE ONDA EXPANSIVA (RIPPLE) AL CLIC DEL BOTÓN ---
         const btn = document.getElementById('notify-btn');
-        btn.addEventListener('click', function() {
-            alert('¡Gracias! Te avisaremos cuando ColJob abra sus puertas virtuales.');
+        btn.addEventListener('click', function(e) {
+            // Crear el elemento de la onda
+            const ripple = document.createElement('div');
+            ripple.classList.add('click-ripple');
+            
+            // Posicionar la onda en el centro exacto del clic
+            const size = 150; // Tamaño final
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - size / 2) + 'px';
+            ripple.style.top = (e.clientY - size / 2) + 'px';
+            
+            // Añadir la animación y duración
+            ripple.style.animation = 'ripple-animation 1s ease-out';
+            
+            // Añadir al cuerpo y borrar después de la animación
+            document.body.appendChild(ripple);
+            setTimeout(() => {
+                ripple.remove();
+                // Aquí puedes añadir la acción real (ej. abrir un modal, redirigir)
+                alert('¡Inicialización completa! El sistema te notificará cuando el futuro esté listo.');
+            }, 1000);
         });
     </script>
 
