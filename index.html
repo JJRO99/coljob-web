@@ -3,206 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColJob | Reinventando el Futuro</title>
+    <title>ColJob | Próximamente</title>
     <style>
-        /* --- ESTILOS GENERALES Y COLORES COLJOB --- */
+        /* --- ESTILOS GENERALES Y COLORES ELEGANTES --- */
         :root {
-            --naranja: #FF6600; /* Naranja Principal */
+            --naranja: #FF6600;
+            --naranja-suave: rgba(255, 102, 0, 0.1);
             --negro: #000000;
-            --negro-suave: #1a1a1a;
             --blanco: #FFFFFF;
+            --gris-oscuro: #111111;
         }
+
+        * { box-sizing: border-box; }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Evita barras de desplazamiento */
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
             background-color: var(--negro);
             color: var(--blanco);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Tipografía limpia */
+            overflow: hidden; /* Importante para el efecto del cursor */
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* --- FONDO TECH ANIMADO (CIRCUITOS) --- */
-        .tech-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(90deg, rgba(255,102,0,0.04) 1px, transparent 1px),
-                linear-gradient(rgba(255,102,0,0.04) 1px, transparent 1px);
-            background-size: 50px 50px;
+        /* --- EFECTO INTERACTIVO DE LUZ (CURSOR) --- */
+        #cursor-light {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none; /* No interfiere con clics */
+            transform: translate(-50%, -50%);
             z-index: 1;
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
-        /* --- CONTENEDOR PRINCIPAL CON EFECTO GLASSMORPHISM --- */
+        /* --- CONTENEDOR PRINCIPAL MINIMALISTA --- */
         .main-container {
             text-align: center;
             z-index: 10;
-            padding: 50px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 102, 0, 0.3);
-            box-shadow: 0 0 40px rgba(255, 102, 0, 0.15);
-            backdrop-filter: blur(8px);
-            max-width: 90%;
-            width: 500px; /* Ancho fijo para consistencia */
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
         }
 
-        /* --- ESTILOS DEL LOGO Y ANIMACIÓN FLOTANTE --- */
+        /* --- ESTILOS DEL LOGO --- */
         .logo-container {
-            margin-bottom: 30px;
-            display: inline-block;
+            margin-bottom: 50px;
         }
 
         .logo-final {
-            max-width: 220px; /* Tamaño ajustable del logo */
+            max-width: 150px;
             height: auto;
-            animation: floating 3.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.5));
+            /* Sin animaciones exageradas, solo una sutil sombra */
+            filter: drop-shadow(0 0 5px rgba(255, 102, 0, 0.2));
+            transition: transform 0.5s ease;
         }
 
-        /* --- TEXTOS Y EMOJIS --- */
+        /* Micro-interacción: El logo se aleja sutilmente del cursor */
+        .logo-container:hover .logo-final {
+            transform: scale(1.03);
+        }
+
+        /* --- TIPOGRAFÍA Y TEXTOS --- */
         h1 {
-            font-size: 3.2rem;
-            margin: 0 0 15px 0;
+            font-size: 1.2rem;
+            font-weight: 300; /* Delgada y elegante */
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-            color: var(--blanco);
+            letter-spacing: 8px; /* Mucho espacio entre letras */
+            margin: 0 0 20px 0;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         h1 span {
-            color: var(--naranja);
+            color: var(--blanco);
+            font-weight: 500;
         }
 
-        .status-msg {
-            font-size: 1.3rem;
-            color: #dddddd;
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            line-height: 1.4;
+        .coming-soon {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 60px 0;
+            line-height: 1.1;
         }
 
-        .emoji-tech {
-            font-size: 2.2rem;
-            animation: gear-spin 5s linear infinite;
-        }
-
-        /* --- SECCIÓN INTERACTIVA (BOTÓN DIVERTIDO) --- */
-        .update-section {
-            margin-top: 30px;
-        }
-
-        .fun-fact {
-            font-style: italic;
-            color: #aaaaaa;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
-
+        /* --- BOTÓN INTERACTIVO Y ELEGANTE --- */
         .btn-notify {
             background-color: transparent;
-            color: var(--naranja);
-            border: 2px solid var(--naranja);
-            padding: 14px 35px;
-            font-size: 1.15rem;
-            font-weight: bold;
+            color: var(--blanco);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 40px;
+            font-size: 0.9rem;
+            font-weight: 400;
             text-transform: uppercase;
-            border-radius: 50px;
+            letter-spacing: 2px;
+            border-radius: 0; /* Bordes rectos y minimalistas */
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
             transition: all 0.4s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: 1px;
+        }
+
+        /* Micro-interacción: El botón se llena de naranja al pasar el mouse */
+        .btn-notify::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 0;
+            background-color: var(--naranja);
+            z-index: -1;
+            transition: height 0.4s ease;
         }
 
         .btn-notify:hover {
-            background-color: var(--naranja);
+            border-color: var(--naranja);
             color: var(--negro);
-            box-shadow: 0 0 25px rgba(255, 102, 0, 0.7);
-            transform: translateY(-4px) scale(1.02);
         }
 
-        /* --- FIGURAS GEOMÉTRICAS DE FONDO ANIMADAS --- */
-        .shape {
-            position: absolute;
-            opacity: 0.12;
-            z-index: 2;
-            animation: float-shapes 12s infinite linear;
+        .btn-notify:hover::after {
+            height: 100%;
         }
 
-        .shape.rect {
-            width: 120px;
-            height: 120px;
-            border: 3px solid var(--naranja);
-            top: 15%;
-            left: 8%;
-        }
-
-        .shape.circle {
-            width: 100px;
-            height: 100px;
+        /* --- EFECTO DE ONDA EXPANSIVA AL CLIC --- */
+        .click-ripple {
+            position: fixed;
             border-radius: 50%;
             background-color: var(--naranja);
-            bottom: 20%;
-            right: 12%;
-            animation-duration: 18s;
+            pointer-events: none;
+            transform: scale(0);
+            z-index: 9999;
+            opacity: 0.7;
         }
 
-        .shape.tri {
-            width: 0;
-            height: 0;
-            border-left: 60px solid transparent;
-            border-right: 60px solid transparent;
-            border-bottom: 100px solid rgba(255,255,255,0.25);
-            top: 65%;
-            left: 75%;
-            animation-duration: 15s;
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
-        /* --- DEFINICIÓN DE ANIMACIONES CSS --- */
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-18px); }
+        /* --- ANIMACIONES CSS --- */
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        @keyframes gear-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes float-shapes {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(120px, -120px) rotate(360deg); }
-        }
-
-        /* --- ADAPTACIÓN PARA MÓVILES (RESPONSIVE) --- */
+        /* Responsividad */
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .status-msg { font-size: 1.1rem; flex-direction: column; gap: 5px; }
-            .logo-final { max-width: 160px; }
-            .main-container { padding: 30px; }
-            .emoji-tech { font-size: 1.8rem; }
-            .btn-notify { padding: 12px 25px; font-size: 1rem; }
+            .coming-soon { font-size: 2.2rem; }
+            h1 { font-size: 1rem; letter-spacing: 4px; }
+            .logo-final { max-width: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="tech-bg"></div>
-
-    <div class="shape rect"></div>
-    <div class="shape circle"></div>
-    <div class="shape tri"></div>
+    <div id="cursor-light"></div>
 
     <div class="main-container">
         
@@ -210,22 +165,58 @@
             <img src="logo_ColJob.png" alt="Logo ColJob" class="logo-final">
         </div>
 
-        <h1><span>ColJob</span></h1>
+        <h1>Próximamente <span>ColJob</span></h1>
         
-        <div class="status-msg">
-            <span class="emoji-tech">⚙️</span>
-            <p>El futuro del trabajo está recibiendo una actualización cuántica.</p>
-            <span class="emoji-tech">🚀</span>
-        </div>
+        <p class="coming-soon">El nuevo<br>estándar laboral.</p>
 
-        <div class="update-section">
-            <p class="fun-fact">Dato curioso: Nuestro robot de código toma café digital.</p>
-            <button class="btn-notify" onclick="alert('¡Estamos puliendo los últimos detalles! Te avisaremos muy pronto. Gracias por tu paciencia.')">
-                <span>🔔</span> Avísame cuando despegue
-            </button>
-        </div>
+        <button class="btn-notify" id="notify-btn">
+            Avísame
+        </button>
 
     </div>
+
+    <script>
+        // 1. Efecto del Foco de Luz que sigue al Cursor
+        const light = document.getElementById('cursor-light');
+        document.addEventListener('mousemove', (e) => {
+            light.style.left = e.clientX + 'px';
+            light.style.top = e.clientY + 'px';
+        });
+
+        // 2. Micro-interacción: Agrandar el foco al pasar sobre el botón
+        const btn = document.getElementById('notify-btn');
+        btn.addEventListener('mouseenter', () => {
+            light.style.width = '550px';
+            light.style.height = '550px';
+        });
+        btn.addEventListener('mouseleave', () => {
+            light.style.width = '400px';
+            light.style.height = '400px';
+        });
+
+        // 3. Efecto de Onda Expansiva (Ripple) al hacer Clic en el botón
+        btn.addEventListener('click', function(e) {
+            // Crear el elemento de la onda
+            const ripple = document.createElement('div');
+            ripple.classList.add('click-ripple');
+            
+            // Posicionar la onda en el centro del clic
+            const size = 100; // Tamaño inicial
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - size / 2) + 'px';
+            ripple.style.top = (e.clientY - size / 2) + 'px';
+            
+            // Añadir la animación y duración
+            ripple.style.animation = 'ripple-animation 0.8s ease-out';
+            
+            // Añadir al cuerpo y borrar después de la animación
+            document.body.appendChild(ripple);
+            setTimeout(() => {
+                ripple.remove();
+                alert('¡Gracias! Te avisaremos cuando ColJob esté listo.');
+            }, 800);
+        });
+    </script>
 
 </body>
 </html>
