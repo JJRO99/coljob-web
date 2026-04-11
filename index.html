@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColJob | Reinventando el Futuro</title>
+    <style>
+        /* --- ESTILOS GENERALES Y COLORES COLJOB --- */
+        :root {
+            --naranja: #FF6600; /* Naranja Principal */
+            --negro: #000000;
+            --negro-suave: #1a1a1a;
+            --blanco: #FFFFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Evita barras de desplazamiento */
+            background-color: var(--negro);
+            color: var(--blanco);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- FONDO TECH ANIMADO (CIRCUITOS) --- */
+        .tech-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, rgba(255,102,0,0.04) 1px, transparent 1px),
+                linear-gradient(rgba(255,102,0,0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL CON EFECTO GLASSMORPHISM --- */
+        .main-container {
+            text-align: center;
+            z-index: 10;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.15);
+            backdrop-filter: blur(8px);
+            max-width: 90%;
+            width: 500px; /* Ancho fijo para consistencia */
+        }
+
+        /* --- ESTILOS DEL LOGO Y ANIMACIÓN FLOTANTE --- */
+        .logo-container {
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .logo-final {
+            max-width: 220px; /* Tamaño ajustable del logo */
+            height: auto;
+            animation: floating 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.5));
+        }
+
+        /* --- TEXTOS Y EMOJIS --- */
+        h1 {
+            font-size: 3.2rem;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            color: var(--blanco);
+        }
+
+        h1 span {
+            color: var(--naranja);
+        }
+
+        .status-msg {
+            font-size: 1.3rem;
+            color: #dddddd;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            line-height: 1.4;
+        }
+
+        .emoji-tech {
+            font-size: 2.2rem;
+            animation: gear-spin 5s linear infinite;
+        }
+
+        /* --- SECCIÓN INTERACTIVA (BOTÓN DIVERTIDO) --- */
+        .update-section {
+            margin-top: 30px;
+        }
+
+        .fun-fact {
+            font-style: italic;
+            color: #aaaaaa;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .btn-notify {
+            background-color: transparent;
+            color: var(--naranja);
+            border: 2px solid var(--naranja);
+            padding: 14px 35px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+        }
+
+        .btn-notify:hover {
+            background-color: var(--naranja);
+            color: var(--negro);
+            box-shadow: 0 0 25px rgba(255, 102, 0, 0.7);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        /* --- FIGURAS GEOMÉTRICAS DE FONDO ANIMADAS --- */
+        .shape {
+            position: absolute;
+            opacity: 0.12;
+            z-index: 2;
+            animation: float-shapes 12s infinite linear;
+        }
+
+        .shape.rect {
+            width: 120px;
+            height: 120px;
+            border: 3px solid var(--naranja);
+            top: 15%;
+            left: 8%;
+        }
+
+        .shape.circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--naranja);
+            bottom: 20%;
+            right: 12%;
+            animation-duration: 18s;
+        }
+
+        .shape.tri {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid rgba(255,255,255,0.25);
+            top: 65%;
+            left: 75%;
+            animation-duration: 15s;
+        }
+
+        /* --- DEFINICIÓN DE ANIMACIONES CSS --- */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
+        }
+
+        @keyframes gear-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float-shapes {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(120px, -120px) rotate(360deg); }
+        }
+
+        /* --- ADAPTACIÓN PARA MÓVILES (RESPONSIVE) --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .status-msg { font-size: 1.1rem; flex-direction: column; gap: 5px; }
+            .logo-final { max-width: 160px; }
+            .main-container { padding: 30px; }
+            .emoji-tech { font-size: 1.8rem; }
+            .btn-notify { padding: 12px 25px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tech-bg"></div>
+
+    <div class="shape rect"></div>
+    <div class="shape circle"></div>
+    <div class="shape tri"></div>
+
+    <div class="main-container">
+        
+        <div class="logo-container">
+            <img src="logo_ColJob.png" alt="Logo ColJob" class="logo-final">
+        </div>
+
+        <h1><span>ColJob</span></h1>
+        
+        <div class="status-msg">
+            <span class="emoji-tech">⚙️</span>
+            <p>El futuro del trabajo está recibiendo una actualización cuántica.</p>
+            <span class="emoji-tech">🚀</span>
+        </div>
+
+        <div class="update-section">
+            <p class="fun-fact">Dato curioso: Nuestro robot de código toma café digital.</p>
+            <button class="btn-notify" onclick="alert('¡Estamos puliendo los últimos detalles! Te avisaremos muy pronto. Gracias por tu paciencia.')">
+                <span>🔔</span> Avísame cuando despegue
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
