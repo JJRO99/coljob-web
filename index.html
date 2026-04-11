@@ -1,163 +1,139 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColJob | El futuro del trabajo se está compilando</title>
+    <title>ColJob | Compilation in Progress</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES DE COLORES --- */
+        /* --- VARIABLES DE COLORES ELEGANTES --- */
         :root {
             --negro: #000000;
-            --negro-suave: #0a0a0a; /* Para degradados muy sutiles */
+            --negro-suave: #0a0a0a;
             --blanco: #ffffff;
-            --naranja: #ff6a00; /* Naranja tecnológico vibrante */
-            --naranja-transparente: rgba(255, 106, 0, 0.1);
-            --naranja-brillo: rgba(255, 106, 0, 0.8);
-            
-            --fuente-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --naranja: #ff6a00; /* Naranja Silicon Valley */
+            --naranja-conectar: rgba(255, 106, 0, 0.9); /* Brillo intenso */
+            --fuente-principal: 'Inter', sans-serif;
         }
 
-        /* --- ESTILOS BASE --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; }
 
         body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Evita barras de desplazamiento para el fondo animado */
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
             background-color: var(--negro);
             color: var(--blanco);
             font-family: var(--fuente-principal);
-            -webkit-font-smoothing: antialiased; /* Suavizado de fuente premium */
-            -moz-osx-font-smoothing: grayscale;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* --- FONDO ANIMADO DE PARTÍCULAS (RED DE NODOS) --- */
+        /* --- FONDO DE RED NEURONAL (PARTICLES.JS) --- */
         #particles-js {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1; /* Detrás del contenido */
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            z-index: 1;
             background-image: radial-gradient(circle at center, var(--negro-suave) 0%, var(--negro) 100%);
+            transition: filter 0.3s ease; /* Para un ligero desenfoque al conectar */
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* Clase que se activa con el clic para iluminar la red */
+        #particles-js.connecting {
+            filter: blur(1px) brightness(1.2); /* Sutil desenfoque y brillo */
+        }
+
+        /* --- CONTENEDOR PRINCIPAL MINIMALISTA --- */
         .main-container {
             text-align: center;
-            z-index: 10; /* Delante del fondo */
-            padding: 40px;
+            z-index: 10;
+            padding: 50px;
             max-width: 90%;
-            width: 600px; /* Ancho optimizado para lectura */
+            width: 550px;
             opacity: 0;
             animation: fadeInSlight 1.5s ease-out forwards;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- LOGO O SÍMBOLO --- */
-        .brand-symbol {
-            font-size: 3rem;
-            color: var(--naranja);
-            margin-bottom: 40px;
-            animation: symbolPulse 4s infinite;
+        /* --- ESTILOS DEL LOGO --- */
+        .logo-container {
+            margin-bottom: 50px;
         }
 
-        /* --- TEXTOS Y JERARQUÍA VISUAL --- */
+        .logo-final {
+            max-width: 160px; /* Tamaño ajustable del logo */
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 106, 0, 0.3));
+        }
+
+        /* --- TIPOGRAFÍA Y TEXTOS EN INGLÉS --- */
         h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             line-height: 1.3;
-            margin-bottom: 25px;
-            color: var(--blanco);
             letter-spacing: -0.5px;
-        }
-
-        /* Estilo para el emoji/símbolo en el texto */
-        h1 span.compile-icon {
-            color: var(--naranja);
-            margin-right: 8px;
-            display: inline-block;
-            animation: rotateSymbol 2s infinite linear;
+            margin: 0 0 20px 0;
+            color: var(--blanco);
         }
 
         p {
             font-size: 1.1rem;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.7); /* Blanco suavizado para el subtítulo */
-            margin-bottom: 60px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 60px 0;
             line-height: 1.6;
         }
 
-        /* --- BOTÓN 'INICIALIZAR' --- */
-        .btn-initialize {
+        /* --- BOTÓN 'CLICK HERE' (DISEÑO DE ALTURA) --- */
+        .btn-facade {
             background-color: transparent;
-            color: var(--naranja);
-            border: 1px solid rgba(255, 106, 0, 0.4);
+            color: var(--blanco);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Borde casi invisible */
             padding: 16px 45px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 4px; /* Bordes rectos y minimalistas */
+            letter-spacing: 3px; /* Mucho espacio entre letras */
+            border-radius: 2px; /* Bordes muy rectos */
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición suave premium */
-            box-shadow: 0 0 10px rgba(255, 106, 0, 0.0);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* Transición premium */
         }
 
-        .btn-initialize:hover {
-            background-color: var(--naranja);
-            color: var(--negro);
-            border-color: var(--naranja);
-            box-shadow: 0 0 25px var(--naranja-transparente);
-            transform: translateY(-2px);
-        }
-
-        /* Microinteracción: Un ligero brillo que recorre el botón */
-        .btn-initialize::after {
+        /* Micro-interacción: Una línea naranja que se llena desde el centro */
+        .btn-facade::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%);
-            transform: skewX(-25deg);
-            transition: 0.7s;
-        }
-
-        .btn-initialize:hover::after {
-            left: 150%;
-        }
-
-        /* --- EFECTO DE ONDA EXPANSIVA (RIPPLE) AL CLIC --- */
-        .click-ripple {
-            position: fixed;
-            border-radius: 50%;
+            bottom: 0; left: 50%;
+            width: 0; height: 2px;
             background-color: var(--naranja);
-            pointer-events: none;
-            transform: scale(0);
-            z-index: 9999;
-            opacity: 0.6;
-            filter: blur(2px);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateX(-50%);
         }
 
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+        .btn-facade:hover {
+            border-color: rgba(255, 106, 0, 0.5);
+            color: var(--naranja);
+            letter-spacing: 4px; /* Las letras se separan sutilmente */
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.1);
+        }
+
+        .btn-facade:hover::after {
+            width: 100%;
+        }
+
+        /* Micro-interacción: El texto sube ligeramente al hover */
+        .btn-facade span {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-facade:hover span {
+            transform: translateY(-2px);
         }
 
         /* --- ANIMACIONES CSS --- */
@@ -166,23 +142,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes symbolPulse {
-            0% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.8; transform: scale(1); }
-        }
-
-        @keyframes rotateSymbol {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* --- ADAPTACIÓN PARA MÓVILES (RESPONSIVE) --- */
+        /* Responsividad para móviles */
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; margin-bottom: 20px; }
+            h1 { font-size: 1.6rem; margin-bottom: 15px; }
             p { font-size: 1rem; margin-bottom: 45px; }
-            .btn-initialize { padding: 14px 35px; font-size: 0.9rem; }
-            .brand-symbol { font-size: 2.5rem; margin-bottom: 30px; }
+            .logo-final { max-width: 130px; }
+            .btn-facade { padding: 14px 35px; font-size: 0.85rem; }
+            .main-container { padding: 30px; }
         }
     </style>
 </head>
@@ -192,103 +158,84 @@
 
     <div class="main-container">
         
-        <div class="brand-symbol">⚛</div>
+        <div class="logo-container">
+            <img src="logo_ColJob.png" alt="ColJob Logo" class="logo-final">
+        </div>
 
-        <h1><span class="compile-icon">🟠</span>El futuro del trabajo se está compilando.</h1>
+        <h1>The future of work is compiling.</h1>
         
-        <p>Pronto liberamos la primera versión.</p>
+        <p>The first version is coming soon.</p>
 
-        <button class="btn-notify" id="notify-btn">
-            Inicializar
+        <button class="btn-facade" id="connect-btn">
+            <span>Click Here</span>
         </button>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Configuración de particles.js para el efecto "Red de Nodos"
+        // 1. Configuración de Particles.js (Red Neuronal Ultra-Minimalista)
         particlesJS("particles-js", {
             "particles": {
-                "number": {
-                    "value": 80, // Número de nodos (ajusta para densidad)
-                    "density": { "enable": true, "value_area": 800 }
-                },
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#ffffff" }, // Color de los nodos
-                "shape": {
-                    "type": "circle", // Nodos circulares
-                    "stroke": { "width": 0, "color": "#000000" },
-                },
-                "opacity": {
-                    "value": 0.2, // Nodos muy sutiles
-                    "random": false,
-                    "anim": { "enable": false }
-                },
-                "size": {
-                    "value": 2, // Tamaño de los nodos
-                    "random": true,
-                    "anim": { "enable": false }
-                },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.15, "random": false }, // Nodos casi invisibles
+                "size": { "value": 2, "random": true },
                 "line_linked": {
-                    "enable": true, // Activar las líneas conectoras
-                    "distance": 150, // Distancia máxima de conexión
+                    "enable": true,
+                    "distance": 150,
                     "color": "#ffffff", // Color de las líneas
-                    "opacity": 0.1, // Líneas ultra-sutiles
+                    "opacity": 0.08, // Líneas ultra-sutiles por defecto
                     "width": 1
                 },
-                "move": {
-                    "enable": true, // Movimiento fluido
-                    "speed": 1, // Velocidad lenta y elegante
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out", // Partículas que salen vuelven a entrar
-                    "bounce": false,
-                }
+                "move": { "enable": true, "speed": 1, "out_mode": "out" }
             },
             "interactivity": {
                 "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab" // Las líneas se conectan sutilmente al cursor
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push" // Clic añade partículas (para feedback visual)
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": { "distance": 140, "line_linked": { "opacity": 0.3 } },
-                    "push": { "particles_nb": 4 }
-                }
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false } },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.3 } } }
             },
             "retina_detect": true
         });
 
-        // --- EFECTO DE ONDA EXPANSIVA (RIPPLE) AL CLIC DEL BOTÓN ---
-        const btn = document.getElementById('notify-btn');
-        btn.addEventListener('click', function(e) {
-            // Crear el elemento de la onda
-            const ripple = document.createElement('div');
-            ripple.classList.add('click-ripple');
+        // 2. Interacción de Clic de Alto Impacto (Conectar Red Neuronal)
+        const btn = document.getElementById('connect-btn');
+        const particlesContainer = document.getElementById('particles-js');
+
+        btn.addEventListener('click', function() {
+            // A) Activar el efecto visual de "Conexión"
+            particlesContainer.classList.add('connecting');
             
-            // Posicionar la onda en el centro exacto del clic
-            const size = 150; // Tamaño final
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - size / 2) + 'px';
-            ripple.style.top = (e.clientY - size / 2) + 'px';
-            
-            // Añadir la animación y duración
-            ripple.style.animation = 'ripple-animation 1s ease-out';
-            
-            // Añadir al cuerpo y borrar después de la animación
-            document.body.appendChild(ripple);
+            // B) Modificar dinámicamente la configuración de particles.js para iluminar la red
+            // Esto accede internamente a la instancia y cambia los valores
+            if (window.pJSDom && window.pJSDom[0]) {
+                const pJS = window.pJSDom[0].pJS;
+                
+                // Iluminar nodos y líneas
+                pJS.particles.line_linked.color = "#ff6a00"; // Cambiar a naranja
+                pJS.particles.line_linked.opacity = 0.9; // Brillo máximo
+                pJS.particles.line_linked.width = 2; // Líneas más gruesas
+                pJS.particles.color.value = "#ff6a00"; // Nodos naranjas
+                
+                // Redibujar la red con los nuevos valores
+                pJS.fn.particlesRefresh();
+            }
+
+            // C) Desactivar el efecto después de 3 segundos
             setTimeout(() => {
-                ripple.remove();
-                // Aquí puedes añadir la acción real (ej. abrir un modal, redirigir)
-                alert('¡Inicialización completa! El sistema te notificará cuando el futuro esté listo.');
-            }, 1000);
+                particlesContainer.classList.remove('connecting');
+                
+                // Restaurar los valores originales
+                if (window.pJSDom && window.pJSDom[0]) {
+                    const pJS = window.pJSDom[0].pJS;
+                    pJS.particles.line_linked.color = "#ffffff";
+                    pJS.particles.line_linked.opacity = 0.08;
+                    pJS.particles.line_linked.width = 1;
+                    pJS.particles.color.value = "#ffffff";
+                    pJS.fn.particlesRefresh();
+                }
+            }, 3000); // 3 segundos de conexión neuronal máxima
         });
     </script>
 
